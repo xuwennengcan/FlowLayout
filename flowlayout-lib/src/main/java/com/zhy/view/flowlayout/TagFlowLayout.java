@@ -78,7 +78,10 @@ public class TagFlowLayout extends FlowLayout
         mOnSelectListener = onSelectListener;
     }
 
-
+    public void setTagClickable(boolean clickable) {
+        this.mTagClickable = clickable;
+    }
+    
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         mOnTagClickListener = onTagClickListener;
     }
