@@ -31,6 +31,7 @@ public class TagFlowLayout extends FlowLayout
 
     private OnSelectListener mOnSelectListener;
     private OnTagClickListener mOnTagClickListener;
+    private boolean mTagClickable;
 
     public interface OnSelectListener {
         void onSelected(Set<Integer> selectPosSet);
@@ -44,6 +45,7 @@ public class TagFlowLayout extends FlowLayout
         super(context, attrs, defStyle);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TagFlowLayout);
         mSelectedMax = ta.getInt(R.styleable.TagFlowLayout_max_select, -1);
+        mTagClickable = ta.getBoolean(R.styleable.TagFlowLayout_tagClickable, true);
         ta.recycle();
     }
 
@@ -129,16 +131,16 @@ public class TagFlowLayout extends FlowLayout
             final TagView finalTagViewContainer = tagViewContainer;
             final int position = i;
             if (mTagClickable)
-            tagViewContainer.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    doSelect(finalTagViewContainer, position);
-                    if (mOnTagClickListener != null) {
-                        mOnTagClickListener.onTagClick(finalTagViewContainer, position,
-                                TagFlowLayout.this);
+                tagViewContainer.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        doSelect(finalTagViewContainer, position);
+                        if (mOnTagClickListener != null) {
+                            mOnTagClickListener.onTagClick(finalTagViewContainer, position,
+                                    TagFlowLayout.this);
+                        }
                     }
-                }
-            });
+                });
         }
         mSelectedView.addAll(preCheckedList);
     }
