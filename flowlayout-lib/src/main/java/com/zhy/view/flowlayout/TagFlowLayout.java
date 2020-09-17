@@ -128,6 +128,7 @@ public class TagFlowLayout extends FlowLayout
             tagView.setClickable(false);
             final TagView finalTagViewContainer = tagViewContainer;
             final int position = i;
+            if (mTagClickable)
             tagViewContainer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
